@@ -1,0 +1,29 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    >
+    <ImageView
+        android:id="@+id/seven"
+        android:layout_width="200dp"
+        android:layout_height="180dp"
+        android:transitionName="test"
+        android:src="@mipmap/ic_launcher"
+        />
+
+    <ImageView
+        android:id="@+id/three"
+        android:layout_width="200dp"
+        android:layout_height="180dp"
+        android:src="@mipmap/ic_launcher"
+        />
+    <ImageView
+        android:id="@+id/four"
+        android:layout_width="200dp"
+        android:layout_height="180dp"
+        android:src="@mipmap/ic_launcher"
+        />
+
+
+</LinearLayout>
