@@ -11,14 +11,17 @@ import android.transition.Explode;
 import android.transition.Fade;
 import android.util.Pair;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
+
+import com.lv.materialanimdemo.transitiondemo.TestOne;
 
 public class MainActivityTwo extends AppCompatActivity implements View.OnClickListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         setContentView(R.layout.activity_main);
         Button btn1 = (Button)findViewById(R.id.one);
         Button btn2 = (Button)findViewById(R.id.two);
@@ -41,7 +44,7 @@ public class MainActivityTwo extends AppCompatActivity implements View.OnClickLi
         Intent intent = null;
         switch (v.getId()) {
             case R.id.one:
-               // getWindow().setExitTransition(new Explode());
+                getWindow().setExitTransition(new Explode());
                 intent = new Intent(MainActivityTwo.this,TwoActivity.class);
                 startActivity(intent,
                         ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
@@ -62,23 +65,29 @@ public class MainActivityTwo extends AppCompatActivity implements View.OnClickLi
                 ChangeBounds changeBounds = new ChangeBounds();
                 getWindow().setExitTransition(changeBounds);
                 intent = new Intent(MainActivityTwo.this,TwoActivity.class);
-                startActivity(intent,
-                        ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
                 break;
             case R.id.five:
                 getWindow().setExitTransition(new Fade());
                 intent = new Intent(MainActivityTwo.this,TwoActivity.class);
-                startActivity(intent,
-                        ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
                 break;
             case R.id.six:
                 getWindow().setExitTransition(new Explode());
                 intent = new Intent(MainActivityTwo.this,TwoActivity.class);
-                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this,
-                        Pair.create(v, "test"));
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this, Pair.create(v, "test"));
 
                  startActivity(intent,options.toBundle());
             default:
         }
+    }
+
+    public void toTest(View view) {
+        if (android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setExitTransition(new Explode());
+            startActivity(new Intent(MainActivityTwo.this,TestOne.class), ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+            return;
+        }
+        startActivity(new Intent(MainActivityTwo.this,TestOne.class));
     }
 }
