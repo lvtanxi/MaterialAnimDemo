@@ -15,11 +15,11 @@ import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 
 /**
-* User: 吕勇
-* Date: 2016-07-22
-* Time: 16:02
-* Description:普通的anim集合
-*/
+ * User: 吕勇
+ * Date: 2016-07-22
+ * Time: 16:02
+ * Description:普通的anim集合
+ */
 public class LAnimUtils {
 
     public static final long PERFECT_MILLS = 350;
@@ -32,22 +32,22 @@ public class LAnimUtils {
     public static void showAsCircular(View myView, float startRadius, long durationMills) {
         if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.LOLLIPOP) {
             showView(myView);
-            return;
+        } else {
+            int cx = (myView.getLeft() + myView.getRight()) / 2;
+            int cy = (myView.getTop() + myView.getBottom()) / 2;
+
+            int w = myView.getWidth();
+            int h = myView.getHeight();
+
+            // 勾股定理 & 进一法
+            int finalRadius = (int) Math.sqrt(w * w + h * h) + 1;
+
+            Animator anim = ViewAnimationUtils.createCircularReveal(myView, cx, cy, startRadius, finalRadius);
+            myView.setVisibility(View.VISIBLE);
+            anim.setDuration(durationMills);
+            anim.start();
         }
 
-        int cx = (myView.getLeft() + myView.getRight()) / 2;
-        int cy = (myView.getTop() + myView.getBottom()) / 2;
-
-        int w = myView.getWidth();
-        int h = myView.getHeight();
-
-        // 勾股定理 & 进一法
-        int finalRadius = (int) Math.sqrt(w * w + h * h) + 1;
-
-        Animator anim = ViewAnimationUtils.createCircularReveal(myView, cx, cy, startRadius, finalRadius);
-        myView.setVisibility(View.VISIBLE);
-        anim.setDuration(durationMills);
-        anim.start();
     }
 
     /**
@@ -93,28 +93,29 @@ public class LAnimUtils {
     public static void hideAsCircular(final View myView, float endRadius, long durationMills) {
         if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.LOLLIPOP) {
             hideView(myView);
-            return;
+        } else {
+            int cx = (myView.getLeft() + myView.getRight()) / 2;
+            int cy = (myView.getTop() + myView.getBottom()) / 2;
+            int w = myView.getWidth();
+            int h = myView.getHeight();
+
+            // 勾股定理 & 进一法
+            int initialRadius = (int) Math.sqrt(w * w + h * h) + 1;
+
+            Animator anim = ViewAnimationUtils.createCircularReveal(myView, cx, cy, initialRadius, endRadius);
+            anim.setDuration(durationMills);
+            anim.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    super.onAnimationEnd(animation);
+                    myView.setVisibility(View.INVISIBLE);
+                }
+            });
+
+            anim.start();
         }
 
-        int cx = (myView.getLeft() + myView.getRight()) / 2;
-        int cy = (myView.getTop() + myView.getBottom()) / 2;
-        int w = myView.getWidth();
-        int h = myView.getHeight();
 
-        // 勾股定理 & 进一法
-        int initialRadius = (int) Math.sqrt(w * w + h * h) + 1;
-
-        Animator anim = ViewAnimationUtils.createCircularReveal(myView, cx, cy, initialRadius, endRadius);
-        anim.setDuration(durationMills);
-        anim.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-                myView.setVisibility(View.INVISIBLE);
-            }
-        });
-
-        anim.start();
     }
 
     /**
@@ -138,63 +139,65 @@ public class LAnimUtils {
 
         if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.LOLLIPOP) {
             thisActivity.startActivity(intent);
-            return;
-        }
+        } else {
+            int[] location = new int[2];
+            triggerView.getLocationInWindow(location);
+            final int cx = location[0] + triggerView.getWidth() / 2;
+            final int cy = location[1] + triggerView.getHeight() / 2;
+            final ImageView view = new ImageView(thisActivity);
+            view.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            view.setImageResource(colorOrImageRes);
+            final ViewGroup decorView = (ViewGroup) thisActivity.getWindow().getDecorView();
+            int w = decorView.getWidth();
+            int h = decorView.getHeight();
+            decorView.addView(view, w, h);
+            final int finalRadius = (int) Math.sqrt(w * w + h * h) + 1;
+            Animator anim = ViewAnimationUtils.createCircularReveal(view, cx, cy, 0, finalRadius);
+            anim.setDuration(durationMills);
+            anim.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    super.onAnimationEnd(animation);
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                        if (requestCode == null)
+                            thisActivity.startActivity(intent);
+                        else if (bundle == null)
+                            thisActivity.startActivityForResult(intent, requestCode);
+                        else
+                            thisActivity.startActivityForResult(intent, requestCode, bundle);
 
-        int[] location = new int[2];
-        triggerView.getLocationInWindow(location);
-        final int cx = location[0] + triggerView.getWidth() / 2;
-        final int cy = location[1] + triggerView.getHeight() / 2;
-        final ImageView view = new ImageView(thisActivity);
-        view.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        view.setImageResource(colorOrImageRes);
-        final ViewGroup decorView = (ViewGroup) thisActivity.getWindow().getDecorView();
-        int w = decorView.getWidth();
-        int h = decorView.getHeight();
-        decorView.addView(view, w, h);
-        final int finalRadius = (int) Math.sqrt(w * w + h * h) + 1;
-        Animator anim = ViewAnimationUtils.createCircularReveal(view, cx, cy, 0, finalRadius);
-        anim.setDuration(durationMills);
-        anim.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-
-                if (requestCode == null)
-                    thisActivity.startActivity(intent);
-                else if (bundle == null)
-                    thisActivity.startActivityForResult(intent, requestCode);
-                else
-                    thisActivity.startActivityForResult(intent, requestCode, bundle);
-
-                // 默认渐隐过渡动画.
-                thisActivity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-
-                // 默认显示返回至当前Activity的动画.
-                triggerView.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Animator anim =
-                                ViewAnimationUtils.createCircularReveal(view, cx, cy, finalRadius, 0);
-                        anim.setDuration(durationMills);
-                        anim.addListener(new AnimatorListenerAdapter() {
+                        // 默认渐隐过渡动画.
+                        thisActivity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                        // 默认显示返回至当前Activity的动画.
+                        triggerView.postDelayed(new Runnable() {
                             @Override
-                            public void onAnimationEnd(Animator animation) {
-                                super.onAnimationEnd(animation);
-                                try {
-                                    decorView.removeView(view);
-                                } catch (Exception e) {
-                                    e.printStackTrace();
+                            public void run() {
+                                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                                    Animator anim = ViewAnimationUtils.createCircularReveal(view, cx, cy, finalRadius, 0);
+                                    anim.setDuration(durationMills);
+                                    anim.addListener(new AnimatorListenerAdapter() {
+                                        @Override
+                                        public void onAnimationEnd(Animator animation) {
+                                            super.onAnimationEnd(animation);
+                                            try {
+                                                decorView.removeView(view);
+                                            } catch (Exception e) {
+                                                e.printStackTrace();
+                                            }
+                                        }
+                                    });
+                                    anim.start();
                                 }
                             }
-                        });
-                        anim.start();
+                        }, PERFECT_MILLS);
                     }
-                }, PERFECT_MILLS);
 
-            }
-        });
-        anim.start();
+                }
+            });
+            anim.start();
+        }
+
+
     }
 
 

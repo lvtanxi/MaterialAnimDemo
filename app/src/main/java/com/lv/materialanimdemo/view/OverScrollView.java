@@ -29,6 +29,7 @@ public class OverScrollView extends ScrollView {
 
 	public OverScrollView(Context context, AttributeSet attrs) {
 		super(context, attrs);
+		setVerticalScrollBarEnabled(false);
 	}
 
 	@Override
