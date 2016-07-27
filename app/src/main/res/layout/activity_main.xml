@@ -1,59 +1,80 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
     <Button
         android:id="@+id/one"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
         android:text="explode"
         />
+
     <Button
         android:id="@+id/two"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
         android:text="changeBounds"
         />
+
     <Button
         android:id="@+id/three"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
         android:text="changeTransform"
         />
+
     <Button
         android:id="@+id/four"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
         android:text="changeClipBounds"
         />
 
     <Button
         android:id="@+id/five"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
         android:text="fade"
         />
+
     <Button
         android:id="@+id/six"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
         android:text="共享"/>
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
         android:onClick="toTest"
         android:text="切换"/>
 
+    <com.lv.materialanimdemo.ATLoginButton
+        android:id="@+id/tesLogin"
+        android:layout_width="match_parent"
+        app:login_text="登录"
+        app:failed_text="登录失败"
+        app:text_size="12sp"
+        android:layout_margin="25dp"
+        app:text_color="@android:color/white"
+        app:button_color="@color/colorAccent"
+        app:circle_loading_color="@color/colorPrimary"
+        app:circle_loading_width="5dp"
+        app:failed_button_color="@android:color/holo_green_light"
+        android:layout_height="wrap_content"/>
 
 
+    <com.dd.CircularProgressButton
+        android:id="@+id/circularButton1"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:textColor="@color/cpb_white"
+        android:textSize="18sp"
+        app:cpb_textError="加载失败"
+        android:layout_marginTop="10dp"
+        app:cpb_cornerRadius="48dp"
+        app:cpb_textComplete="加载成功"
+        app:cpb_textIdle="城市" />
 </LinearLayout>
