@@ -39,7 +39,7 @@ public class MainActivityTwo extends AppCompatActivity implements View.OnClickLi
                         String notice = loaginStatus ? "登陆成功,重置button状态" : "登录失败,显示失败状态";
                         Toast.makeText(getApplicationContext(), notice, Toast.LENGTH_SHORT).show();
                     }
-                }, 10000);
+                }, 3000);
             }
         });
         final CircularProgressButton circularButton1 = (CircularProgressButton) findViewById(R.id.circularButton1);
@@ -47,6 +47,7 @@ public class MainActivityTwo extends AppCompatActivity implements View.OnClickLi
         circularButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                tesLogin.setViewState(ATLoginButton.LoginViewState.READY_STATE);
                 if (circularButton1.getProgress() < 50) {
                     circularButton1.setProgress(50);
                 } else if (circularButton1.getProgress() == 100) {
