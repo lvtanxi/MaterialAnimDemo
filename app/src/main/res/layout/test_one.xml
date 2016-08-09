@@ -53,5 +53,15 @@
             android:onClick="move90"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/ic_expand_less_black_24dp"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
+            android:stateListAnimator="@animator/selector_animator"
+            android:textColor="@android:color/white"
+            android:text="StateListAnimator"
+            android:textAllCaps="false"/>
     </LinearLayout>
 </com.lv.materialanimdemo.view.OverScrollView>

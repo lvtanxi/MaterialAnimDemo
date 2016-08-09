@@ -2,6 +2,7 @@ package com.lv.materialanimdemo.transitiondemo;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,8 +11,6 @@ import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
-import android.view.animation.RotateAnimation;
-import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 
 /**
@@ -54,9 +53,11 @@ public class LAnimUtils {
      * 向四周伸张，直到完成显示。
      */
     public static void showView(View view) {
-        // 收缩按钮
+        ObjectAnimator.ofFloat(view,"scaleX",0,1)
+                .setDuration(PERFECT_MILLS)
+                .start();
         view.setVisibility(View.VISIBLE);
-        Animation scaleAnimation = new ScaleAnimation(0, 1, 0, 1, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+       /* Animation scaleAnimation = new ScaleAnimation(0, 1, 0, 1, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         scaleAnimation.setFillAfter(true);
         scaleAnimation.setDuration(PERFECT_MILLS);
         scaleAnimation.setAnimationListener(new CustAnimationListener(view) {
@@ -65,15 +66,17 @@ public class LAnimUtils {
                 mView.clearAnimation();
             }
         });
-        view.startAnimation(scaleAnimation);
+        view.startAnimation(scaleAnimation);*/
     }
 
     /**
      * 由满向中间收缩，直到隐藏。
      */
     public static void hideView(View view) {
-        // 收缩按钮
-        Animation scaleAnimation = new ScaleAnimation(1, 0, 1, 1, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        ObjectAnimator.ofFloat(view,"scaleX",1f,0)
+                .setDuration(PERFECT_MILLS)
+                .start();
+      /*  Animation scaleAnimation = new ScaleAnimation(1, 0, 1, 1, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         scaleAnimation.setFillAfter(true);
         scaleAnimation.setDuration(PERFECT_MILLS);
         scaleAnimation.setAnimationListener(new CustAnimationListener(view) {
@@ -83,7 +86,7 @@ public class LAnimUtils {
                 mView.clearAnimation();
             }
         });
-        view.startAnimation(scaleAnimation);
+        view.startAnimation(scaleAnimation);*/
     }
 
 
@@ -122,10 +125,13 @@ public class LAnimUtils {
      * view旋转
      */
     public static void viewRotate(View view, int startAngle, int endAngle) {
-        Animation rotateAnimation = new RotateAnimation(startAngle, endAngle, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);//显示动画
+        ObjectAnimator.ofFloat(view,"rotationX",startAngle,endAngle)
+                .setDuration(PERFECT_MILLS)
+                .start();
+     /*   Animation rotateAnimation = new RotateAnimation(startAngle, endAngle, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);//显示动画
         rotateAnimation.setDuration(PERFECT_MILLS);
         rotateAnimation.setFillAfter(true);
-        view.startAnimation(rotateAnimation);
+        view.startAnimation(rotateAnimation);*/
     }
 
 

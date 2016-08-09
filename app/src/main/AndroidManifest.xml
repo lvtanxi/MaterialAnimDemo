@@ -18,6 +18,7 @@
         <activity android:name=".TwoActivity"/>
         <activity android:name=".transitiondemo.TestOne"/>
         <activity android:name=".transitiondemo.TestTwo"/>
+        <activity android:name=".DirectionAct"/>
     </application>
 
 </manifest>

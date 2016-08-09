@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.dd.CircularProgressButton;
+import com.lv.materialanimdemo.transitiondemo.LAnimUtils;
 import com.lv.materialanimdemo.transitiondemo.TestOne;
 
 public class MainActivityTwo extends AppCompatActivity implements View.OnClickListener {
@@ -35,11 +36,16 @@ public class MainActivityTwo extends AppCompatActivity implements View.OnClickLi
                     @Override
                     public void run() {
                         //这里调用View获取登陆状态的方法,成功或者失败
-                        tesLogin.buttonLoaginResultAciton(loaginStatus);
+                        tesLogin.buttonLoaginResultAciton(loaginStatus, new ATLoginButton.AnimationEndListener() {
+                            @Override
+                            public void animationEnd() {
+                                LAnimUtils.startActivityAsCircular(MainActivityTwo.this, DirectionAct.class, tesLogin, R.color.colorAccent);
+                            }
+                        });
                         String notice = loaginStatus ? "登陆成功,重置button状态" : "登录失败,显示失败状态";
                         Toast.makeText(getApplicationContext(), notice, Toast.LENGTH_SHORT).show();
                     }
-                }, 3000);
+                }, 800);
             }
         });
         final CircularProgressButton circularButton1 = (CircularProgressButton) findViewById(R.id.circularButton1);
