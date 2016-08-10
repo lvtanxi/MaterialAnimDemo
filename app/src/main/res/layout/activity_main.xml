@@ -4,6 +4,13 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:minHeight="?attr/actionBarSize"/>
+
     <Button
         android:id="@+id/one"
         android:layout_width="match_parent"
@@ -69,6 +76,7 @@
         app:text_color="#90000000"
         app:text_normal_color="@android:color/white"
         app:text_size="16sp"/>
+
 
 
     <com.dd.CircularProgressButton
