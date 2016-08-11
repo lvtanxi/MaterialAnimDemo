@@ -1,5 +1,8 @@
 package com.lv.materialanimdemo.transitiondemo;
 
+import android.animation.Animator;
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorSet;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +10,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
@@ -22,12 +26,19 @@ public class TestOne extends AppCompatActivity implements View.OnClickListener {
     private ProgressBar mProgressBar;
     private Button mChangeBtn;
     private LinearLayout mTop;
+    private ImageView ivBake;
+    private ImageView ivMusic;
+    private ImageView ivOutdoor;
 
+    private Animator oneSet;
+    private Animator twoSet;
+    private Animator threeSet;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_one);
         initView();
+        initAnimation();
     }
 
     public void tochange(View view) {
@@ -37,10 +48,22 @@ public class TestOne extends AppCompatActivity implements View.OnClickListener {
     private void initView() {
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
         mChangeBtn = (Button) findViewById(R.id.change_btn);
-
+        ivBake = (ImageView)findViewById(R.id.iv_bake);
+        ivMusic = (ImageView)findViewById(R.id.iv_music);
+        ivOutdoor = (ImageView)findViewById(R.id.iv_outdoor);
         mChangeBtn.setOnClickListener(this);
         mProgressBar.setOnClickListener(this);
         mTop = (LinearLayout) findViewById(R.id.top);
+    }
+    private void initAnimation() {
+        oneSet = AnimatorInflater.loadAnimator(this,R.animator.obja_one);
+        twoSet = AnimatorInflater.loadAnimator(this,R.animator.obja_two);
+        threeSet = AnimatorInflater.loadAnimator(this,R.animator.obja_three);
+        oneSet.setTarget(ivOutdoor);
+        twoSet.setTarget(ivMusic);
+        threeSet.setTarget(ivBake);
+        twoSet.setStartDelay(100);
+        threeSet.setStartDelay(250);
     }
 
     @Override
@@ -104,5 +127,17 @@ public class TestOne extends AppCompatActivity implements View.OnClickListener {
         LAnimUtils.viewRotate(view,toRight ? 0 : 180, toRight ? 180 : 0);
         view.setTag(toRight ? "asdf" : null);
 
+    }
+
+    public void testObj(View view) {
+        Animator animator= AnimatorInflater.loadAnimator(this,R.animator.image);
+        animator.setTarget(view);
+        AnimatorSet set = new AnimatorSet();
+        set.playTogether(animator);
+        set.start();
+
+        AnimatorSet set2 = new AnimatorSet();
+        set2.playTogether(oneSet, twoSet, threeSet);
+        set2.start();
     }
 }

@@ -17,7 +17,6 @@ public class TwoActivity extends AppCompatActivity {
         imge.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finishAfterTransition();
             }
         });
 
