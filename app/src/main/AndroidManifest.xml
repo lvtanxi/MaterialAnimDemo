@@ -19,6 +19,7 @@
         <activity android:name=".transitiondemo.TestOne"/>
         <activity android:name=".transitiondemo.TestTwo"/>
         <activity android:name=".DirectionAct"/>
+        <activity android:name=".NewMainActivity"/>
     </application>
 
 </manifest>

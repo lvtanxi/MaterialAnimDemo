@@ -172,7 +172,7 @@ public class MainActivityTwo extends AppCompatActivity implements View.OnClickLi
                     break;
                 case R.id.five:
                     getWindow().setExitTransition(new Fade());
-                    intent = new Intent(MainActivityTwo.this, TwoActivity.class);
+                    intent = new Intent(MainActivityTwo.this, NewMainActivity.class);
                     startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
                     break;
                 case R.id.six:

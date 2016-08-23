@@ -53,7 +53,7 @@ public class LAnimUtils {
      * 向四周伸张，直到完成显示。
      */
     public static void showView(View view) {
-        ObjectAnimator.ofFloat(view,"scaleX",0,1)
+        ObjectAnimator.ofFloat(view,View.SCALE_X,0,1)
                 .setDuration(PERFECT_MILLS)
                 .start();
         view.setVisibility(View.VISIBLE);
@@ -73,7 +73,7 @@ public class LAnimUtils {
      * 由满向中间收缩，直到隐藏。
      */
     public static void hideView(View view) {
-        ObjectAnimator.ofFloat(view,"scaleX",1f,0)
+        ObjectAnimator.ofFloat(view,View.SCALE_X,1f,0)
                 .setDuration(PERFECT_MILLS)
                 .start();
       /*  Animation scaleAnimation = new ScaleAnimation(1, 0, 1, 1, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
@@ -125,7 +125,7 @@ public class LAnimUtils {
      * view旋转
      */
     public static void viewRotate(View view, int startAngle, int endAngle) {
-        ObjectAnimator.ofFloat(view,"rotationX",startAngle,endAngle)
+        ObjectAnimator.ofFloat(view,View.ROTATION_X,startAngle,endAngle)
                 .setDuration(PERFECT_MILLS)
                 .start();
      /*   Animation rotateAnimation = new RotateAnimation(startAngle, endAngle, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);//显示动画
