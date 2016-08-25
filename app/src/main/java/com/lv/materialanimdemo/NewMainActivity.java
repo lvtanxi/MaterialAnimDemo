@@ -8,15 +8,17 @@ import android.os.Bundle;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.view.animation.AnticipateOvershootInterpolator;
 import android.view.animation.BounceInterpolator;
 import android.view.animation.LinearInterpolator;
+import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.Spinner;
+
+import com.lv.materialanimdemo.transitiondemo.LAnimUtils;
 
 
 public class NewMainActivity extends AppCompatActivity {
@@ -30,7 +32,7 @@ public class NewMainActivity extends AppCompatActivity {
         DisplayMetrics displaymetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
         int width = displaymetrics.widthPixels;
-        float halfWidth = width/2.0f;
+        float halfWidth = width / 2.0f;
 
         float startLocation;
         float endLocation;
@@ -63,7 +65,7 @@ public class NewMainActivity extends AppCompatActivity {
         final Button clickMeButton = (Button) findViewById(R.id.clickMeButton);
         final Button spinReverseButton = (Button) findViewById(R.id.spinReverseButton);
         final Button spinRotationPointButton = (Button) findViewById(R.id.spinRotationPointButton);
-        spinRotationPointButton.setPivotY(spinRotationPointButton.getPivotY() + (spinRotationPointButton.getHeight()/2.0f));
+        spinRotationPointButton.setPivotY(spinRotationPointButton.getPivotY() + (spinRotationPointButton.getHeight() / 2.0f));
 
         final Button growingButton = (Button) findViewById(R.id.growingButton);
         final Button movingButton = (Button) findViewById(R.id.movingButton);
@@ -135,8 +137,8 @@ public class NewMainActivity extends AppCompatActivity {
             }
         });
 
-        PropertyValuesHolder pvhScaleX = PropertyValuesHolder.ofFloat(View.SCALE_X, 2);
-        PropertyValuesHolder pvhScaleY = PropertyValuesHolder.ofFloat(View.SCALE_Y, 2);
+        PropertyValuesHolder pvhScaleX = PropertyValuesHolder.ofFloat(View.SCALE_X, 0.5f);
+        PropertyValuesHolder pvhScaleY = PropertyValuesHolder.ofFloat(View.SCALE_Y, 0.5f);
         final ObjectAnimator scalingAnimator = ObjectAnimator.ofPropertyValuesHolder(growingButton, pvhScaleX, pvhScaleY);
         scalingAnimator.setRepeatCount(3);
         scalingAnimator.setRepeatMode(ObjectAnimator.REVERSE);
@@ -168,22 +170,39 @@ public class NewMainActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+    public void testValueAnimator(final View view) {
+        final View viewById = findViewById(R.id.imagexx);
+  /*      ObjectAnimator animator = ObjectAnimator.ofFloat(view, View.SCALE_Y, 1, 1, 1,0.5f)
+                .setDuration(800);
+        animator.setInterpolator(new BounceInterpolator());
+        animator.start();*/
+        Animation scaleAnimation = new ScaleAnimation(1, 1, 1,0.5f );
+        scaleAnimation.setDuration(800);
+        scaleAnimation.setFillAfter(true);
+        scaleAnimation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                boolean toRight = viewById.getTag() == null;
+    /*    TransitionManager.beginDelayedTransition(mTop,new Rotate());
+        boolean toRight = view.getTag() == null;
+        view.setRotation(toRight?180:0);
+        view.setTag(toRight ? "asdf" : null);*/
+                LAnimUtils.viewRotate(viewById,toRight ? 0 : 180, toRight ? 180 : 0);
+                viewById.setTag(toRight ? "asdf" : null);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        scaleAnimation.setInterpolator(new BounceInterpolator());
+        view.startAnimation(scaleAnimation);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-
-        return super.onOptionsItemSelected(item);
-    }
 }

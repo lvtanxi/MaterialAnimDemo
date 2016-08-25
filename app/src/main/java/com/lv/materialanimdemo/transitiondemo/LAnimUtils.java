@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 
 /**
@@ -23,6 +24,7 @@ public class LAnimUtils {
 
     public static final long PERFECT_MILLS = 350;
     public static final int MINI_RADIUS = 0;
+    public static final int ROTATE_MILLS =500;
 
 
     /**
@@ -124,14 +126,23 @@ public class LAnimUtils {
     /**
      * view旋转
      */
-    public static void viewRotate(View view, int startAngle, int endAngle) {
+    public static void viewUpDownRotate(View view, int startAngle, int endAngle) {
         ObjectAnimator.ofFloat(view,View.ROTATION_X,startAngle,endAngle)
-                .setDuration(PERFECT_MILLS)
+                .setDuration(ROTATE_MILLS)
                 .start();
      /*   Animation rotateAnimation = new RotateAnimation(startAngle, endAngle, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);//显示动画
         rotateAnimation.setDuration(PERFECT_MILLS);
         rotateAnimation.setFillAfter(true);
         view.startAnimation(rotateAnimation);*/
+    }
+    /**
+     * view旋转
+     */
+    public static void viewRotate(View view, int startAngle, int endAngle) {
+        Animation rotateAnimation = new RotateAnimation(startAngle, endAngle, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);//显示动画
+        rotateAnimation.setDuration(PERFECT_MILLS);
+        rotateAnimation.setFillAfter(true);
+        view.startAnimation(rotateAnimation);
     }
 
 

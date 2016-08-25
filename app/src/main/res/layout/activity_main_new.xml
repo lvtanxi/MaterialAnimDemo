@@ -1,77 +1,117 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:id="@+id/mainView"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
-              android:paddingBottom="@dimen/activity_vertical_margin"
-              android:paddingLeft="@dimen/activity_horizontal_margin"
-              android:paddingRight="@dimen/activity_horizontal_margin"
-              android:paddingTop="@dimen/activity_vertical_margin"
-              tools:context=".NewMainActivity">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Animations!"/>
-
-    <Button
-        android:id="@+id/slideMeButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Slide Me!"/>
-
-    <Button
-        android:id="@+id/slideMeInterpolatorButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Slide Me?"/>
-
-    <Spinner
-        android:id="@+id/slideMeInterpolationOptions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:entries="@array/interpolations"/>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="150dp"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/clickMeButton"
+        android:id="@+id/mainView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context=".NewMainActivity">
+        <com.lv.materialanimdemo.view.ExpandableTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            app:animDuration="200"
+            app:collapseDrawable="@drawable/icon_green_arrow_down"
+            app:collapseExpandGrarity="right"
+            app:collapseExpandTextColor="@color/main_color"
+            app:contentTextColor="@color/gray"
+            app:contentTextSize="14sp"
+            app:textMessage="@string/test_content"
+            app:expandDrawable="@drawable/icon_green_arrow_up"
+            app:maxCollapsedLines="5"
+            app:textCollapse="@string/collapse"
+            app:textExpand="@string/expand"/>
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="Spin"/>
+            android:text="Animations!"/>
 
         <Button
-            android:id="@+id/spinReverseButton"
+            android:id="@+id/slideMeButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="Spin with Reverse"/>
+            android:text="Slide Me!"/>
 
         <Button
-            android:id="@+id/spinRotationPointButton"
+            android:id="@+id/slideMeInterpolatorButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="Spin Rotation Point"/>
+            android:text="Slide Me?"/>
+
+        <Spinner
+            android:id="@+id/slideMeInterpolationOptions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/interpolations"/>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="150dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/clickMeButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="Spin"/>
+
+            <Button
+                android:id="@+id/spinReverseButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="Spin with Reverse"/>
+
+            <Button
+                android:id="@+id/spinRotationPointButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="Spin Rotation Point"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/growingButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Grow Me!"/>
+
+        <Button
+            android:id="@+id/movingButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Move Me!"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@color/colorPrimary"
+            android:onClick="testValueAnimator">
+
+            <ImageView
+                android:id="@+id/imagexx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_expand_less_black_24dp"
+                android:tint="@color/colorAccent"/>
+        </RelativeLayout>
+
+
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/growingButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="Grow Me!"/>
-
-    <Button
-        android:id="@+id/movingButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Move Me!"/>
-
-</LinearLayout>
+</ScrollView>

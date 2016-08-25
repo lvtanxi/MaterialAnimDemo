@@ -130,8 +130,10 @@ public class TestOne extends AppCompatActivity implements View.OnClickListener {
     }
 
     public void testObj(View view) {
+        boolean toRight = view.getTag() == null;
+        LAnimUtils.viewUpDownRotate(view,toRight ? 0 : 180, toRight ? 180 : 0);
+        view.setTag(toRight ? "asdf" : null);
         Animator animator= AnimatorInflater.loadAnimator(this,R.animator.image);
-        animator.setTarget(view);
         AnimatorSet set = new AnimatorSet();
         set.playTogether(animator);
         set.start();
