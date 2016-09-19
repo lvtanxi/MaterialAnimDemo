@@ -1,93 +1,105 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:minHeight="?attr/actionBarSize"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/one"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="explode"
-        />
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:minHeight="?attr/actionBarSize"/>
 
-    <Button
-        android:id="@+id/two"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="changeBounds"
-        />
+        <Button
+            android:id="@+id/one"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="explode"
+            />
 
-    <Button
-        android:id="@+id/three"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="changeTransform"
-        />
+        <Button
+            android:id="@+id/two"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="changeBounds"
+            />
 
-    <Button
-        android:id="@+id/four"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="changeClipBounds"
-        />
+        <Button
+            android:id="@+id/three"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="changeTransform"
+            />
 
-    <Button
-        android:id="@+id/five"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="fade"
-        />
+        <Button
+            android:id="@+id/four"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="changeClipBounds"
+            />
 
-    <Button
-        android:id="@+id/six"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="共享"/>
+        <Button
+            android:id="@+id/five"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="fade"
+            />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="toTest"
-        android:text="切换"/>
+        <Button
+            android:id="@+id/six"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="共享"/>
 
-    <com.lv.materialanimdemo.ATLoginButton
-        android:id="@+id/tesLogin"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_gravity="center_horizontal"
-        app:button_color="@color/colorAccent"
-        app:button_normal_stroke_color="@android:color/holo_purple"
-        app:button_normal_stroke_width="1dp"
-        app:circle_loading_color="@android:color/black"
-        app:circle_loading_width="2dp"
-        app:failed_button_color="@color/colorAccent"
-        app:failed_text="登录失败!"
-        app:failed_text_color="@android:color/white"
-        app:login_text="登录"
-        app:text_color="#90000000"
-        app:text_normal_color="@android:color/white"
-        app:text_size="16sp"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="toTest"
+            android:text="切换"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="toAnimateLayoutChanges"
+            android:text="animateLayoutChanges"/>
+
+        <com.lv.materialanimdemo.ATLoginButton
+            android:id="@+id/tesLogin"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center_horizontal"
+            app:button_color="@color/colorAccent"
+            app:button_normal_stroke_color="@android:color/holo_purple"
+            app:button_normal_stroke_width="1dp"
+            app:circle_loading_color="@android:color/black"
+            app:circle_loading_width="2dp"
+            app:failed_button_color="@color/colorAccent"
+            app:failed_text="登录失败!"
+            app:failed_text_color="@android:color/white"
+            app:login_text="登录"
+            app:text_color="#90000000"
+            app:text_normal_color="@android:color/white"
+            app:text_size="16sp"/>
 
 
-
-    <com.dd.CircularProgressButton
-        android:id="@+id/circularButton1"
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/cpb_white"
-        android:textSize="18sp"
-        app:cpb_cornerRadius="48dp"
-        app:cpb_textComplete="加载成功"
-        app:cpb_textError="加载失败"
-        app:cpb_textIdle="城市"/>
-</LinearLayout>
+        <com.dd.CircularProgressButton
+            android:id="@+id/circularButton1"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/cpb_white"
+            android:textSize="18sp"
+            app:cpb_cornerRadius="48dp"
+            app:cpb_textComplete="加载成功"
+            app:cpb_textError="加载失败"
+            app:cpb_textIdle="城市"/>
+    </LinearLayout>
+</ScrollView>

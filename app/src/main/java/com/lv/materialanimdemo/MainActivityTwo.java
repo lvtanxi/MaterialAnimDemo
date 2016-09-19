@@ -237,4 +237,8 @@ public class MainActivityTwo extends AppCompatActivity implements View.OnClickLi
 
         return true;
     }
+
+    public void toAnimateLayoutChanges(View view) {
+        AnimateLayoutChangesAct.startAnimateLayoutChangesAct(this);
+    }
 }
