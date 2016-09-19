@@ -256,6 +256,10 @@ public class LAnimUtils {
             mView = view;
         }
 
+        public CustAnimationListener() {
+
+        }
+
         @Override
         public void onAnimationStart(Animation animation) {
 

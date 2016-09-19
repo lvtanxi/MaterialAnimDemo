@@ -15,6 +15,31 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
         tools:context=".NewMainActivity">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:onClick="testValueAnimator"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:onClick="testValueAnimator"/>
+
+            <ImageView
+                android:id="@+id/imagexx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_expand_less_black_24dp"
+                android:tint="@color/colorAccent"/>
+        </LinearLayout>
+
         <com.lv.materialanimdemo.view.ExpandableTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -25,11 +50,12 @@
             app:collapseExpandTextColor="@color/main_color"
             app:contentTextColor="@color/gray"
             app:contentTextSize="14sp"
-            app:textMessage="@string/test_content"
             app:expandDrawable="@drawable/icon_green_arrow_up"
             app:maxCollapsedLines="5"
             app:textCollapse="@string/collapse"
-            app:textExpand="@string/expand"/>
+            app:textExpand="@string/expand"
+            app:textMessage="@string/test_content"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -54,7 +80,7 @@
             android:entries="@array/interpolations"/>
 
         <LinearLayout
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="150dp"
             android:orientation="horizontal">
 
@@ -93,23 +119,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Move Me!"/>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@color/colorPrimary"
-            android:onClick="testValueAnimator">
-
-            <ImageView
-                android:id="@+id/imagexx"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:src="@drawable/ic_expand_less_black_24dp"
-                android:tint="@color/colorAccent"/>
-        </RelativeLayout>
-
 
 
     </LinearLayout>
